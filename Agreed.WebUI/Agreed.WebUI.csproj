@@ -4,4 +4,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Agreed.Core\Agreed.Core.csproj" />
+    <ProjectReference Include="..\Agreed.DataAccess\Agreed.DataAccess.csproj" />
+    <ProjectReference Include="..\Agreed.Service\Agreed.Service.csproj" />
+  </ItemGroup>
+
 </Project>
