@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\files\Img\logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.4">
@@ -18,6 +22,10 @@
     <ProjectReference Include="..\Agreed.Core\Agreed.Core.csproj" />
     <ProjectReference Include="..\Agreed.DataAccess\Agreed.DataAccess.csproj" />
     <ProjectReference Include="..\Agreed.Service\Agreed.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Files\" />
   </ItemGroup>
 
 </Project>
