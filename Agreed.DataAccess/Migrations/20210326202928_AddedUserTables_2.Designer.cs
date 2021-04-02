@@ -4,14 +4,16 @@ using Agreed.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Agreed.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210326202928_AddedUserTables_2")]
+    partial class AddedUserTables_2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,17 +44,14 @@ namespace Agreed.DataAccess.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("OperationClaims");
+                    b.ToTable("OperationClaim");
                 });
 
             modelBuilder.Entity("Agreed.Core.Entities.Order", b =>
@@ -138,12 +137,12 @@ namespace Agreed.DataAccess.Migrations
                             Brand = "HAC",
                             CargoCode = "123456",
                             CargoCompany = "HAC CARGO",
-                            CargoDeliveryDate = new DateTime(2021, 3, 26, 23, 53, 28, 708, DateTimeKind.Local).AddTicks(5855),
+                            CargoDeliveryDate = new DateTime(2021, 3, 26, 23, 29, 27, 179, DateTimeKind.Local).AddTicks(9700),
                             CommissionRate = 10.5,
                             DeliveryAddress = "Denizli",
                             DiscountAmount = 10m,
                             Email = "anil@hacyazilim.com.tr",
-                            OrderDate = new DateTime(2021, 3, 19, 23, 53, 28, 710, DateTimeKind.Local).AddTicks(6060),
+                            OrderDate = new DateTime(2021, 3, 19, 23, 29, 27, 181, DateTimeKind.Local).AddTicks(9800),
                             OrderStatus = 0,
                             PackageNumber = "123",
                             Piece = 1,
@@ -160,8 +159,6 @@ namespace Agreed.DataAccess.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("CompanyId")
@@ -171,20 +168,16 @@ namespace Agreed.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("PasswordHash")
-                        .HasMaxLength(500)
-                        .HasColumnType("varbinary(500)");
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<byte[]>("PasswordSalt")
-                        .HasMaxLength(500)
-                        .HasColumnType("varbinary(500)");
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
@@ -193,7 +186,7 @@ namespace Agreed.DataAccess.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("Users");
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("Agreed.Core.Entities.UserOperationClaim", b =>
@@ -201,8 +194,6 @@ namespace Agreed.DataAccess.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("OperationClaimId")
@@ -217,7 +208,7 @@ namespace Agreed.DataAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserOperationClaims");
+                    b.ToTable("UserOperationClaim");
                 });
 
             modelBuilder.Entity("Agreed.Core.Entities.User", b =>
@@ -225,7 +216,7 @@ namespace Agreed.DataAccess.Migrations
                     b.HasOne("Agreed.Core.Entities.Company", "Company")
                         .WithMany("Users")
                         .HasForeignKey("CompanyId")
-                        .HasConstraintName("FK_Users_Company")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Company");
@@ -236,13 +227,13 @@ namespace Agreed.DataAccess.Migrations
                     b.HasOne("Agreed.Core.Entities.OperationClaim", "OperationClaim")
                         .WithMany("UserOperationClaims")
                         .HasForeignKey("OperationClaimId")
-                        .HasConstraintName("FK_UserOperationClaims_OperationClaims")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Agreed.Core.Entities.User", "User")
                         .WithMany("UserOperationClaims")
                         .HasForeignKey("UserId")
-                        .HasConstraintName("FK_UserOperationClaims_Users")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("OperationClaim");

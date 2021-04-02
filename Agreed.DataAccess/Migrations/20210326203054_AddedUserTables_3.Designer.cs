@@ -4,14 +4,16 @@ using Agreed.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Agreed.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210326203054_AddedUserTables_3")]
+    partial class AddedUserTables_3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -138,12 +140,12 @@ namespace Agreed.DataAccess.Migrations
                             Brand = "HAC",
                             CargoCode = "123456",
                             CargoCompany = "HAC CARGO",
-                            CargoDeliveryDate = new DateTime(2021, 3, 26, 23, 53, 28, 708, DateTimeKind.Local).AddTicks(5855),
+                            CargoDeliveryDate = new DateTime(2021, 3, 26, 23, 30, 53, 356, DateTimeKind.Local).AddTicks(1348),
                             CommissionRate = 10.5,
                             DeliveryAddress = "Denizli",
                             DiscountAmount = 10m,
                             Email = "anil@hacyazilim.com.tr",
-                            OrderDate = new DateTime(2021, 3, 19, 23, 53, 28, 710, DateTimeKind.Local).AddTicks(6060),
+                            OrderDate = new DateTime(2021, 3, 19, 23, 30, 53, 359, DateTimeKind.Local).AddTicks(5257),
                             OrderStatus = 0,
                             PackageNumber = "123",
                             Piece = 1,

@@ -15,7 +15,7 @@ namespace Agreed.Service.Services
     {
         public OrderService(IUnitOfWork unitOfWork, IRepository<Order> repository) : base(unitOfWork, repository)
         {
-
         }
+
     }
 }

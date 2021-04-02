@@ -16,11 +16,20 @@ namespace Agreed.DataAccess
 
         // Tables
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<OperationClaim> OperationClaims{ get; set; }
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+        public DbSet<User> Users{ get; set; }
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Configuration
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
+            modelBuilder.ApplyConfiguration(new CompantConfiguration());
+            modelBuilder.ApplyConfiguration(new OperationClaimConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new UserOperationClaimConfiguration());
 
             // Seeds
             modelBuilder.ApplyConfiguration(new OrderSeed());
