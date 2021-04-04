@@ -42,7 +42,7 @@ namespace Agreed.Core.Entities
         /// <summary>
         /// Sipatiş Statüsü
         /// </summary>
-        public OrderStatus OrderStatus{ get; set; }
+        public string OrderStatus{ get; set; }
 
         /// <summary>
         /// E-Posta

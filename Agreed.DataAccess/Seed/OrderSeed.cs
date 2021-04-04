@@ -29,7 +29,7 @@ namespace Agreed.DataAccess.Seed
                     Email = "anil@hacyazilim.com.tr",
                     OrderDate = DateTime.Now.AddDays(-7),
                     OrderNumber = "123",
-                    OrderStatus = Core.Enums.OrderStatus.Created,
+                    OrderStatus = string.Empty,
                     StockCode = "aaaa",
                     PackageNumber = "123",
                     Piece = 1,

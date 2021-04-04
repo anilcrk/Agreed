@@ -46,7 +46,7 @@ namespace Agreed.WebUI.DTOs
         /// <summary>
         /// Sipatiş Statüsü
         /// </summary>
-        public OrderStatus OrderStatus { get; set; }
+        public string OrderStatus { get; set; }
 
         /// <summary>
         /// E-Posta

@@ -8,49 +8,49 @@
     <button class="btn btn-success btn-block p-1" type="submit"><i class="fas fa-file-excel-o fa-2x"></i></button>
 </form>
 
-    <script>
-        window.onload = function () {
-            toastr.success('Veri Tabanı Güncellendi.', 'Başarılı!');
-        };
-    </script>
+<script>
+    window.onload = function () {
+        toastr.success('Veri Tabanı Güncellendi.', 'Başarılı!');
+    };
+</script>
 
-    <form asp-controller="Order" asp-action="CreateOrderDB" method="post">
-        <input type="hidden" name="file" value="@ViewBag.fName" />
-        <div class="row">
-            <div class="col-md-6 p-1">
-                <button class="btn btn-dark btn-block" type="submit"><i class="fas fa-save fa-2x"></i></button>
-            </div>
-            <div class="col-md-6 p-1">
-                <a class="btn btn-outline-warning btn-block" href="/Order"><i class="fas fa-close fa-2x"></i> </a>
-            </div>
+<form asp-controller="Order" asp-action="Import" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="file" value="@ViewBag.fName" />
+    <div class="row">
+        <div class="col-md-6 p-1">
+            <button class="btn btn-dark btn-block" type="submit"><i class="fas fa-save fa-2x"></i></button>
         </div>
-    </form>
-
-    <div class="table-responsive">
-        <table class="table mt-1 table-hover" border="1">
-            <thead class="thead-light">
-                <tr>
-                    <th scope="col">Barkod</th>
-                    <th scope="col">Paket No</th>
-                    <th scope="col">Kargo</th>
-                    <th scope="col">Sipariş Tarihi</th>
-                    <th scope="col">Teslim Tarihi</th>
-                    <th scope="col">Kargo Kodu</th>
-
-                </tr>
-            </thead>
-          
-                <tbody>
-                    <tr>
-                        <td>12345648</td>
-                        <td>123456</td>
-                        <td>SÜRAT</td>
-                        <td>@DateTime.Now</td>
-                        <td>Teslim edilmedi </td>
-                        <td>2</td>
-                    </tr>
-                </tbody>
-            
-        </table>
+        <div class="col-md-6 p-1">
+            <a class="btn btn-outline-warning btn-block" href="/Order"><i class="fas fa-close fa-2x"></i> </a>
+        </div>
     </div>
+</form>
+
+<div class="table-responsive">
+    <table class="table mt-1 table-hover" border="1">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Barkod</th>
+                <th scope="col">Paket No</th>
+                <th scope="col">Kargo</th>
+                <th scope="col">Sipariş Tarihi</th>
+                <th scope="col">Teslim Tarihi</th>
+                <th scope="col">Kargo Kodu</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>12345648</td>
+                <td>123456</td>
+                <td>SÜRAT</td>
+                <td>@DateTime.Now</td>
+                <td>Teslim edilmedi </td>
+                <td>2</td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>
 
