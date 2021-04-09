@@ -11,7 +11,8 @@ namespace Agreed.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<Order> builder)
         {
-            builder.HasKey(x => x.OrderNumber);
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).UseIdentityColumn();
         }
     }
 }

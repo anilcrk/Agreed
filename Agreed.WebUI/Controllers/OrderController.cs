@@ -12,6 +12,9 @@ using ExcelDataReader;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Agreed.WebUI.Models.ViewModels;
+using Agreed.WebUI.Helpers.ExcelModelHelper;
+using Agreed.WebUI.ModelServices;
 
 namespace Agreed.WebUI.Controllers
 {
@@ -19,95 +22,39 @@ namespace Agreed.WebUI.Controllers
     {
         private readonly IOrderService _service;
         private readonly IMapper _mapper;
+        private readonly OrderModelService _modelService;
 
-        public OrderController(IOrderService service, IMapper mapper)
+        public OrderController(IOrderService service, IMapper mapper, OrderModelService modelService)
         {
             _service = service;
             _mapper = mapper;
+            _modelService = modelService;
         }
         public IActionResult Index()
         {
-            return View();
+            var model = new OrderViewModel();
+            model.ResultModel = null;
+
+            return View(model);
         }
 
         [HttpPost]
         [Obsolete]
-        public IActionResult Index(IFormFile file, [FromServices] IHostingEnvironment hostingEnvironment)
+        public async Task<IActionResult> Index(IFormFile orderReportFile, [FromServices] IHostingEnvironment hostingEnvironment)
         {
-            string fileName = $"{hostingEnvironment.WebRootPath}\\files\\{file.FileName}";
-            using (FileStream fileStream = System.IO.File.Create(fileName))
+            var model = new OrderViewModel();
+
+            if(orderReportFile == null)
             {
-                file.CopyTo(fileStream);
-                fileStream.Flush();
+                return View(model);
             }
-            var orders = this.ReadAndAddRangeOrder(file.FileName);
 
-            //return Index(orders);
+            string fileName = $"{hostingEnvironment.WebRootPath}\\files\\";
 
-            return View();
+            var orders = await OrderModelHelper.ReadOrder(orderReportFile, fileName);
+
+            return View(await _modelService.AddRange(orders));
         }
-
-        private List<OrderDto> ReadAndAddRangeOrder(string fName)
-        {
-            List<OrderDto> orders = new List<OrderDto>();
-            var fileName = $"{Directory.GetCurrentDirectory()}{@"\wwwroot\files"}" + "\\" + fName;
-            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
-            ViewBag.fName = $"{@"wwwroot\files"}" + "\\" + fName;
-            using (var stream = System.IO.File.Open(fileName, FileMode.Open, FileAccess.Read))
-            {
-                using (var reader = ExcelReaderFactory.CreateReader(stream))
-                {
-                    while (reader.Read())
-                    {
-                        if (reader.Depth == 0) continue;
-
-                        orders.Add(new OrderDto()
-                        {
-                            Barcode = reader.GetValue(0) != null ? reader.GetValue(0).ToString() : "",
-                            PackageNumber = reader.GetValue(1) != null ? reader.GetValue(1).ToString() : "",
-                            CargoCompany = reader.GetValue(2) != null ? reader.GetValue(2).ToString() : "",
-                            OrderDate = Convert.ToDateTime(reader.GetValue(3).ToString()),
-                            CargoDeliveryDate = Convert.ToDateTime(reader.GetValue(4).ToString()),
-                            CargoCode = reader.GetValue(5) != null ? reader.GetValue(5).ToString() : "",
-                            OrderNumber = reader.GetValue(6) != null ? reader.GetValue(6).ToString() : "",
-                            Receiver = reader.GetValue(7) != null ? reader.GetValue(7).ToString() : "",
-                            DeliveryAddress = reader.GetValue(8) != null ? reader.GetValue(8).ToString() : "",
-                            ProductName = reader.GetValue(9) != null ? reader.GetValue(9).ToString() : "",
-                            BillingAddress = reader.GetValue(10) != null ? reader.GetValue(10).ToString() : "",
-                            OrderStatus = reader.GetValue(11) != null ? reader.GetValue(11).ToString() : string.Empty,
-                            Email = reader.GetValue(12) != null ? reader.GetValue(12).ToString() : string.Empty,
-                            CommissionRate = Convert.ToDouble(reader.GetValue(13)),
-                            Brand = reader.GetValue(14) != null ? reader.GetValue(14).ToString() : string.Empty,
-                            StockCode = reader.GetValue(15) != null ? reader.GetValue(15).ToString() : string.Empty,
-                            Piece = Convert.ToInt32(reader.GetValue(16)),
-                            UnitPrice = Convert.ToDecimal(reader.GetValue(17)),
-                            SalesAmount = Convert.ToDecimal(reader.GetValue(18)),
-                            DiscountAmount = Convert.ToDecimal(reader.GetValue(19)),
-                            AmountTobeBilled = Convert.ToDecimal(reader.GetValue(20)),
-                            BoutiqueNumber = reader.GetValue(21) != null ? reader.GetValue(21).ToString() : string.Empty,
-                        });
-                    }
-                }
-            }
-            var result = orders.ToList();
-
-            // model doldurulduktan sonra file delete
-            System.IO.File.Delete(fileName);
-
-            try
-            {
-                _service.AddRangeAsync(_mapper.Map<IEnumerable<Order>>(orders));
-            }
-            catch (Exception ex)
-            {
-
-            }
-
-
-
-            return result;
-        }
-
 
         public async Task<IActionResult> GetAll()
         {

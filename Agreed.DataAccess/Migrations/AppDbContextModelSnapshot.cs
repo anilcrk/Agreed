@@ -57,8 +57,12 @@ namespace Agreed.DataAccess.Migrations
 
             modelBuilder.Entity("Agreed.Core.Entities.Order", b =>
                 {
-                    b.Property<string>("OrderNumber")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<decimal>("AmountTobeBilled")
                         .HasColumnType("decimal(18,2)");
@@ -99,6 +103,9 @@ namespace Agreed.DataAccess.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("OrderNumber")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("OrderStatus")
                         .HasColumnType("nvarchar(max)");
 
@@ -123,14 +130,14 @@ namespace Agreed.DataAccess.Migrations
                     b.Property<decimal>("UnitPrice")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("OrderNumber");
+                    b.HasKey("Id");
 
                     b.ToTable("Orders");
 
                     b.HasData(
                         new
                         {
-                            OrderNumber = "123",
+                            Id = 1,
                             AmountTobeBilled = 150m,
                             Barcode = "0000000000001998",
                             BillingAddress = "İstanbul",
@@ -138,12 +145,13 @@ namespace Agreed.DataAccess.Migrations
                             Brand = "HAC",
                             CargoCode = "123456",
                             CargoCompany = "HAC CARGO",
-                            CargoDeliveryDate = new DateTime(2021, 4, 5, 0, 51, 2, 546, DateTimeKind.Local).AddTicks(9808),
+                            CargoDeliveryDate = new DateTime(2021, 4, 5, 1, 33, 14, 53, DateTimeKind.Local).AddTicks(8561),
                             CommissionRate = 10.5,
                             DeliveryAddress = "Denizli",
                             DiscountAmount = 10m,
                             Email = "anil@hacyazilim.com.tr",
-                            OrderDate = new DateTime(2021, 3, 29, 0, 51, 2, 549, DateTimeKind.Local).AddTicks(8354),
+                            OrderDate = new DateTime(2021, 3, 29, 1, 33, 14, 56, DateTimeKind.Local).AddTicks(5108),
+                            OrderNumber = "123",
                             OrderStatus = "",
                             PackageNumber = "123",
                             Piece = 1,

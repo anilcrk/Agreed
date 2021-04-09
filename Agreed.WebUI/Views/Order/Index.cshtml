@@ -1,56 +1,93 @@
-﻿@{
+﻿@model Agreed.WebUI.Models.ViewModels.OrderViewModel
+
+@{
     ViewBag.Title = "Siparişler";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<form asp-controller="Order" asp-action="Index" method="post" enctype="multipart/form-data">
-    <input class="btn btn-lg btn-block btn-outline-light p-1" type="file" name="file" />
-    <button class="btn btn-success btn-block p-1" type="submit"><i class="fas fa-file-excel-o fa-2x"></i></button>
-</form>
-
-<script>
-    window.onload = function () {
-        toastr.success('Veri Tabanı Güncellendi.', 'Başarılı!');
-    };
-</script>
-
-<form asp-controller="Order" asp-action="Import" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="file" value="@ViewBag.fName" />
-    <div class="row">
-        <div class="col-md-6 p-1">
-            <button class="btn btn-dark btn-block" type="submit"><i class="fas fa-save fa-2x"></i></button>
-        </div>
-        <div class="col-md-6 p-1">
-            <a class="btn btn-outline-warning btn-block" href="/Order"><i class="fas fa-close fa-2x"></i> </a>
+<div class="card">
+    <div class="card-header">
+        <label class="card-title">Sipariş Raporu</label>
+    </div>
+    <div class="card-content">
+        <div class="card-body">
+            <form asp-controller="Order" asp-action="Index" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                        <fieldset class="form-group">
+                            <label for="basicInputFile">excel</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="orderReportFile" name="orderReportFile">
+                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <button class="btn btn-success btn-block p-1" type="submit" title="Karşılaştır"><i class="fas fa-file-excel-o fa-2x"></i></button>
+                </div>
+            </form>
         </div>
     </div>
-</form>
-
-<div class="table-responsive">
-    <table class="table mt-1 table-hover" border="1">
-        <thead class="thead-light">
-            <tr>
-                <th scope="col">Barkod</th>
-                <th scope="col">Paket No</th>
-                <th scope="col">Kargo</th>
-                <th scope="col">Sipariş Tarihi</th>
-                <th scope="col">Teslim Tarihi</th>
-                <th scope="col">Kargo Kodu</th>
-
-            </tr>
-        </thead>
-
-        <tbody>
-            <tr>
-                <td>12345648</td>
-                <td>123456</td>
-                <td>SÜRAT</td>
-                <td>@DateTime.Now</td>
-                <td>Teslim edilmedi </td>
-                <td>2</td>
-            </tr>
-        </tbody>
-
-    </table>
 </div>
+@*<div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th class="text-center">
+                        Barkod
+                    </th>
+                    <th class="text-center">
+                        Paket No
+                    </th>
+                    <th class="text-center">
+                        Kargo
+                    </th>
+                    <th class="text-center">
+                        Sipariş Tarihi
+                    </th>
+                    <th class="text-center">
+                        Teslim Tarihi
+                    </th>
+                    <th class="text-center">
+                        Kargo Kodu
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Orders.Count > 0)
+                {
+                    @foreach (var item in Model.Orders)
+                    {
+                        <tr>
+                            <td>@item.Barcode</td>
+                            <td>@item.PackageNumber</td>
+                            <td>@item.CargoCompany</td>
+                            <td>@item.OrderDate</td>
+                            <td>@item.CargoDeliveryDate</td>
+                            <td>@item.CargoCode</td>
+                        </tr>
+                    }
 
+                }
+            </tbody>
+        </table>
+    </div>*@
+
+@if (Model.ResultModel != null)
+{
+    <script type="text/javascript">
+
+        window.onload = function () {
+            var success = '@Model.ResultModel.Success';
+            var message = '@Model.ResultModel.Message';
+
+            if (success) {
+                toastr.success(message, 'Başarılı!');
+            }
+            else {
+                toastr.error(message, 'Başarısız!');
+            }
+        };
+
+    </script>
+}

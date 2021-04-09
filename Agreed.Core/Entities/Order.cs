@@ -7,6 +7,7 @@ namespace Agreed.Core.Entities
 {
     public class Order
     {
+        public int Id { get; set; }
         public string Barcode { get; set; }
         public string PackageNumber { get; set; }
         public string CargoCompany { get; set; }

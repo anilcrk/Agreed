@@ -10,6 +10,7 @@ using Agreed.DataAccess;
 using Agreed.DataAccess.Repositories;
 using Agreed.DataAccess.UnitOfWorks;
 using Agreed.Service.Services;
+using Agreed.WebUI.ModelServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -37,6 +38,7 @@ namespace Agreed.WebUI
             services.AddScoped(typeof(IService<>), typeof(Service<>));
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<OrderModelService, OrderModelService>();
 
             services.AddDbContext<AppDbContext>(options =>
             {

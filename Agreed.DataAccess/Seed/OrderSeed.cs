@@ -14,6 +14,7 @@ namespace Agreed.DataAccess.Seed
             builder.HasData(
                 new Order
                 {
+                    Id=1,
                     AmountTobeBilled = 150,
                     BillingAddress = "İstanbul",
                     DeliveryAddress = "Denizli",
