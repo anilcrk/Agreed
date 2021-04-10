@@ -18,6 +18,7 @@ namespace Agreed.DataAccess.Configurations
             builder.Property(x => x.LastName).HasMaxLength(50);
             builder.Property(x => x.PasswordHash).HasMaxLength(500);
             builder.Property(x => x.PasswordSalt).HasMaxLength(500);
+            builder.Property(x => x.Password).HasMaxLength(500);
 
             builder.HasOne(d => d.Company)
                 .WithMany(p => p.Users)

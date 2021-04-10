@@ -12,7 +12,9 @@ namespace Agreed.DataAccess.UnitOfWorks
     {
         private readonly AppDbContext _appContext;
         private OrderRepository _orderRepository;
+        private UserRepository _userRepository;
         public IOrderRepository Orders => _orderRepository = _orderRepository ?? new OrderRepository(_appContext);
+        public IUserRepository Users => _userRepository = _userRepository ?? new UserRepository(_appContext);
 
         public UnitOfWork(AppDbContext appDbContext)
         {
