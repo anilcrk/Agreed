@@ -11,6 +11,7 @@ using Agreed.DataAccess.Repositories;
 using Agreed.DataAccess.UnitOfWorks;
 using Agreed.Service.Services;
 using Agreed.WebUI.ModelServices;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -49,7 +50,13 @@ namespace Agreed.WebUI
                 });
             });
 
-            services.AddControllersWithViews();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = "/Account/Login";
+                    options.Cookie.Name = "AgreedCookie";
+                });
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,7 +74,10 @@ namespace Agreed.WebUI
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseCookiePolicy();
 
             app.UseEndpoints(endpoints =>
             {
