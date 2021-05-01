@@ -4,101 +4,22 @@ using Agreed.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Agreed.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210501132616_commission")]
+    partial class commission
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("Agreed.Core.Entities.Commission", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime?>("AgreeDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Barcode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CommissionInvoiceNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("CommissionRate")
-                        .HasColumnType("float");
-
-                    b.Property<DateTime>("Deliverydate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("MaturityDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OdemeStatus")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("OrderDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("OrderNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ProcessDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ProcessType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProductName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Seller")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("SellerProgressPayment")
-                        .HasColumnType("float");
-
-                    b.Property<DateTime?>("ShippingDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Surname")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("TYProgressPayment")
-                        .HasColumnType("float");
-
-                    b.Property<DateTime>("TermDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("TermTime")
-                        .HasColumnType("int");
-
-                    b.Property<double>("TotalAmount")
-                        .HasColumnType("float");
-
-                    b.Property<string>("TransactionId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("VendorCurrentName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Commissions");
-                });
 
             modelBuilder.Entity("Agreed.Core.Entities.Company", b =>
                 {
@@ -226,12 +147,12 @@ namespace Agreed.DataAccess.Migrations
                             Brand = "HAC",
                             CargoCode = "123456",
                             CargoCompany = "HAC CARGO",
-                            CargoDeliveryDate = new DateTime(2021, 5, 1, 16, 28, 34, 28, DateTimeKind.Local).AddTicks(5842),
+                            CargoDeliveryDate = new DateTime(2021, 5, 1, 16, 26, 15, 120, DateTimeKind.Local).AddTicks(3802),
                             CommissionRate = 10.5,
                             DeliveryAddress = "Denizli",
                             DiscountAmount = 10m,
                             Email = "anil@hacyazilim.com.tr",
-                            OrderDate = new DateTime(2021, 4, 24, 16, 28, 34, 31, DateTimeKind.Local).AddTicks(3203),
+                            OrderDate = new DateTime(2021, 4, 24, 16, 26, 15, 123, DateTimeKind.Local).AddTicks(1449),
                             OrderNumber = "123",
                             OrderStatus = "",
                             PackageNumber = "123",

@@ -16,6 +16,7 @@ namespace Agreed.DataAccess
 
         // Tables
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Commission> Commissions{ get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<OperationClaim> OperationClaims{ get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }

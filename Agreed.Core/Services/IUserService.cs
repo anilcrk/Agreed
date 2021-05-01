@@ -10,6 +10,7 @@ namespace Agreed.Core.Services
 {
     public interface IUserService : IService<User>
     {
-        public Task<User> SingleOrDefaulEncryptAsync(Expression<Func<User, bool>> predicate);
+        public Task<User> LoginControlAsync(User userLogin);
+        public List<OperationClaim> GetClaims(User user);
     }
 }

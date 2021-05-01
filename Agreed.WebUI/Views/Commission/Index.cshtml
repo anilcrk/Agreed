@@ -1,0 +1,49 @@
+﻿@model Agreed.WebUI.Models.ViewModels.CommissionViewModel
+
+@{
+    ViewBag.Title = "Siparişler";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <label class="card-title">Komisyon Raporu</label>
+    </div>
+    <div class="card-content">
+        <div class="card-body">
+            <form asp-controller="Commission" asp-action="Index" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                        <fieldset class="form-group">
+                            <label for="basicInputFile">excel</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="commissionReportFile" name="commissionReportFile">
+                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <button class="btn btn-success btn-block p-1" type="submit" title="Yükle"><i class="fas fa-file-excel-o fa-2x"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@if (Model.ResultModel != null)
+{
+    <script type="text/javascript">
+
+        window.onload = function () {
+            var success = '@Model.ResultModel.Success';
+            var message = '@Model.ResultModel.Message';
+
+            if (success == 'True') {
+                toastr.success(message, 'Başarılı!');
+            }
+            else {
+                toastr.error(message, 'Başarısız!');
+            }
+        };
+
+    </script>
+}

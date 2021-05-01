@@ -1,5 +1,5 @@
 ﻿using Agreed.Core.Entities;
-using Agreed.Core.Services;
+using Agreed.Core.Service;
 using Agreed.WebUI.DTOs;
 using Agreed.WebUI.Models.ViewModels;
 using AutoMapper;
@@ -10,22 +10,22 @@ using System.Threading.Tasks;
 
 namespace Agreed.WebUI.ModelServices
 {
-    public class OrderModelService
+    public class CommissionModelService
     {
-        private readonly IOrderService _service;
+        private readonly IService<Commission> _service;
         private readonly IMapper _mapper;
-        public OrderModelService(IOrderService service, IMapper mapper)
+        public CommissionModelService(IService<Commission> service, IMapper mapper)
         {
             _service = service;
             _mapper = mapper;
         }
 
-        public async Task<OrderViewModel> AddRange(List<OrderDto> orders)
+        public async Task<CommissionViewModel> AddRange(List<CommissionDto> orders)
         {
-            var model = new OrderViewModel();
+            var model = new CommissionViewModel();
 
             try
-            {    
+            {
                 if (orders?.Count == 0)
                 {
                     model.ResultModel.Success = false;
@@ -34,10 +34,10 @@ namespace Agreed.WebUI.ModelServices
                     return model;
                 }
 
-                await _service.AddRangeAndControlAsync(_mapper.Map<IEnumerable<Order>>(orders));
+                await _service.AddRangeAsync(_mapper.Map<IEnumerable<Commission>>(orders));
 
                 model.ResultModel.Success = true;
-                model.ResultModel.Message = $"{orders.Count} adet sipariş başarılı bir şekilde yüklendi.";
+                model.ResultModel.Message = $"{orders.Count} adet komisyon detayı başarılı bir şekilde yüklendi.";
 
                 return model;
             }

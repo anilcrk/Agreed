@@ -40,6 +40,10 @@ namespace Agreed.WebUI
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<OrderModelService, OrderModelService>();
+            services.AddScoped<CompanyModelService, CompanyModelService>();
+            services.AddScoped<CommissionModelService, CommissionModelService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ICompanyService, CompanyService>();
 
             services.AddDbContext<AppDbContext>(options =>
             {
@@ -53,7 +57,7 @@ namespace Agreed.WebUI
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
                 {
-                    options.LoginPath = "/Account/Login";
+                    options.LoginPath = "/Account/Index";
                     options.Cookie.Name = "AgreedCookie";
                 });
             services.AddMvc();

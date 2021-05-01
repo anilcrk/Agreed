@@ -81,7 +81,7 @@
             var success = '@Model.ResultModel.Success';
             var message = '@Model.ResultModel.Message';
 
-            if (success) {
+            if (success == 'True') {
                 toastr.success(message, 'Başarılı!');
             }
             else {

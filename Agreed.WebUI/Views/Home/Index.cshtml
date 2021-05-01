@@ -16,7 +16,7 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            <h1 class="mb-2 text-white">Hoşgeldin Kullanıcı,</h1>
+                            <h1 class="mb-2 text-white">Hoşgeldin @User.Claims.FirstOrDefault(u=>u.Type == System.Security.Claims.ClaimTypes.Name).Value,</h1>
                             <p class="m-auto w-75"><br>Bugüne kadar <strong>78%</strong> oranında eşleştirme yaptın.</p>
                         </div>
                     </div>

@@ -15,9 +15,14 @@ using Microsoft.AspNetCore.Mvc;
 using Agreed.WebUI.Models.ViewModels;
 using Agreed.WebUI.Helpers.ExcelModelHelper;
 using Agreed.WebUI.ModelServices;
+using Agreed.WebUI.Authorize;
+using Agreed.Core.Constants;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Agreed.WebUI.Controllers
 {
+    [Authorize]
+    [AuthorizeRoles(Role.Administrator)]
     public class OrderController : Controller
     {
         private readonly IOrderService _service;
@@ -50,8 +55,19 @@ namespace Agreed.WebUI.Controllers
             }
 
             string fileName = $"{hostingEnvironment.WebRootPath}\\files\\";
+            var orders = new List<OrderDto>();
 
-            var orders = await OrderModelHelper.ReadOrder(orderReportFile, fileName);
+            try
+            {
+                orders = await OrderModelHelper.ReadOrder(orderReportFile, fileName);
+            }
+            catch(Exception ex)
+            {
+                model.ResultModel.Success = false;
+                model.ResultModel.Message = ex.Message;
+                return View(model);
+            }
+            
 
             return View(await _modelService.AddRange(orders));
         }

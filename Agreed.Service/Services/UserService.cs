@@ -18,12 +18,24 @@ namespace Agreed.Service.Services
 
         }
 
-        public async Task<User> SingleOrDefaulEncryptAsync(Expression<Func<User, bool>> predicate)
+        public async Task<User> LoginControlAsync(User userLogin)
         {
-            var user = await _unitOfWork.Users.SingleOrDefaultAsync(predicate);
-            user.Email = AES256.EncryptAndEncode(user.Email);
-            return user;
+            try
+            {
+                var user = await _unitOfWork.Users.SingleOrDefaultAsync(u => u.Email == AES256.EncryptAndEncode(userLogin.Email) && u.Password == AES256.EncryptAndEncode(userLogin.Password));
 
+                return user;
+            }
+            catch
+            {
+                return null;
+            }
+            
+        }
+
+        public List<OperationClaim> GetClaims(User user)
+        {
+            return _unitOfWork.Users.GetClaims(user);
         }
     }
 }
