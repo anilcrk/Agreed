@@ -4,14 +4,16 @@ using Agreed.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Agreed.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210501210623_updatedProperties")]
+    partial class updatedProperties
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,20 +28,20 @@ namespace Agreed.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("BoutiqueId")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("BoutiqueId")
+                        .HasColumnType("int");
 
                     b.Property<string>("CargoCompany")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Desi")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Desi")
+                        .HasColumnType("int");
 
                     b.Property<string>("MinCampaignScale")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NumberOfProducts")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("NumberOfProducts")
+                        .HasColumnType("int");
 
                     b.Property<double>("OrderAmount")
                         .HasColumnType("float");
@@ -50,8 +52,8 @@ namespace Agreed.DataAccess.Migrations
                     b.Property<string>("OrderNo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SellerID")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("SellerID")
+                        .HasColumnType("int");
 
                     b.Property<string>("SellerName")
                         .HasColumnType("nvarchar(max)");
@@ -280,12 +282,12 @@ namespace Agreed.DataAccess.Migrations
                             Brand = "HAC",
                             CargoCode = "123456",
                             CargoCompany = "HAC CARGO",
-                            CargoDeliveryDate = new DateTime(2021, 5, 2, 0, 8, 30, 893, DateTimeKind.Local).AddTicks(2896),
+                            CargoDeliveryDate = new DateTime(2021, 5, 2, 0, 6, 22, 396, DateTimeKind.Local).AddTicks(2209),
                             CommissionRate = 10.5,
                             DeliveryAddress = "Denizli",
                             DiscountAmount = 10m,
                             Email = "anil@hacyazilim.com.tr",
-                            OrderDate = new DateTime(2021, 4, 25, 0, 8, 30, 896, DateTimeKind.Local).AddTicks(5087),
+                            OrderDate = new DateTime(2021, 4, 25, 0, 6, 22, 398, DateTimeKind.Local).AddTicks(1643),
                             OrderNumber = "123",
                             OrderStatus = "",
                             PackageNumber = "123",

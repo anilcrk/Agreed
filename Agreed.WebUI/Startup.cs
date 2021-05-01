@@ -42,6 +42,7 @@ namespace Agreed.WebUI
             services.AddScoped<OrderModelService, OrderModelService>();
             services.AddScoped<CompanyModelService, CompanyModelService>();
             services.AddScoped<CommissionModelService, CommissionModelService>();
+            services.AddScoped<CargoModelService, CargoModelService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICompanyService, CompanyService>();
 

@@ -14,6 +14,12 @@ namespace Agreed.WebUI.Mappings
         {
             CreateMap<Order, OrderDto>();
             CreateMap<OrderDto, Order>();
+
+            CreateMap<Commission, CommissionDto>();
+            CreateMap<CommissionDto, Commission>();
+
+            CreateMap<Cargo, CargoDto>();
+            CreateMap<CargoDto, Cargo>();
         }
     }
 }

@@ -1,23 +1,23 @@
-﻿@model Agreed.WebUI.Models.ViewModels.CommissionViewModel
+﻿@model Agreed.WebUI.Models.ViewModels.CargoViewModel
 
 @{
-    ViewBag.Title = "Komisyonlar";
+    ViewBag.Title = "Kargolar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="card">
     <div class="card-header">
-        <label class="card-title">Komisyon Raporu</label>
+        <label class="card-title">Kargo Raporu</label>
     </div>
     <div class="card-content">
         <div class="card-body">
-            <form asp-controller="Commission" asp-action="Index" method="post" enctype="multipart/form-data">
+            <form asp-controller="Cargo" asp-action="Index" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-lg-6 col-md-12">
                         <fieldset class="form-group">
                             <label for="basicInputFile">excel</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="commissionReportFile" name="commissionReportFile">
+                                <input type="file" class="custom-file-input" id="cargoReportFile" name="cargoReportFile">
                                 <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                             </div>
                         </fieldset>

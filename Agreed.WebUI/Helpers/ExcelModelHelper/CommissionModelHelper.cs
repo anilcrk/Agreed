@@ -83,6 +83,8 @@ namespace Agreed.WebUI.Helpers.ExcelModelHelper
                         commission.Name = reader.GetValue(19) != null ? reader.GetValue(19).ToString() : "";
                         commission.Surname = reader.GetValue(20) != null ? reader.GetValue(20).ToString() : "";
                         commission.ShippingDate = reader.GetValue(21) != null ? Convert.ToDateTime(reader.GetValue(21)) : new DateTime();
+
+                        commmisions.Add(commission);
                     }
                 }
             }
