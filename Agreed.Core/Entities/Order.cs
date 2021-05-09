@@ -7,6 +7,7 @@ namespace Agreed.Core.Entities
 {
     public class Order
     {
+        public int CompanyId { get; set; }
         public int Id { get; set; }
         public string Barcode { get; set; }
         public string PackageNumber { get; set; }
@@ -94,5 +95,7 @@ namespace Agreed.Core.Entities
         /// Butik Numarası
         /// </summary>
         public string BoutiqueNumber { get; set; }
+
+        public virtual Company Company { get; set; }
     }
 }

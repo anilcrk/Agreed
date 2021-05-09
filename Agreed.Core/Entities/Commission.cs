@@ -6,6 +6,7 @@ namespace Agreed.Core.Entities
 {
     public class Commission
     {
+        public int CompanyId { get; set; }
         public int Id { get; set; }
 
         /// <summary>
@@ -120,5 +121,7 @@ namespace Agreed.Core.Entities
         /// Kargoya veriliş tarihi
         /// </summary>
         public DateTime? ShippingDate { get; set; }
+
+        public virtual Company Company { get; set; }
     }
 }

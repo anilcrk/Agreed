@@ -12,7 +12,7 @@ namespace Agreed.WebUI.Helpers.ExcelModelHelper
 {
     public class CommissionModelHelper
     {
-        public static Task<List<CommissionDto>> ReadCommision(IFormFile file, string fileName)
+        public static Task<List<CommissionDto>> ReadCommision(IFormFile file, string fileName, int companyId)
         {
             if (!string.IsNullOrEmpty(fileName))
             {
@@ -61,6 +61,7 @@ namespace Agreed.WebUI.Helpers.ExcelModelHelper
                         //});
 
                         var commission = new CommissionDto();
+                        commission.CompanyId = companyId;
                         commission.TransactionId = reader.GetValue(0) != null ? reader.GetValue(0).ToString() : "";
                         commission.ProcessType = reader.GetValue(1) != null ? reader.GetValue(1).ToString() : "";
                         commission.OrderNumber = reader.GetValue(2) != null ? reader.GetValue(2).ToString() : "";

@@ -10,6 +10,7 @@ namespace Agreed.WebUI.DTOs
 {
     public class OrderDto
     {
+        public int CompanyId { get; set; }
         public string Barcode { get; set; }
         public string PackageNumber { get; set; }
         public string CargoCompany { get; set; }

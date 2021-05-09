@@ -18,4 +18,6 @@ namespace Agreed.WebUI.Models.ViewModels
         public ResultModel ResultModel { get; set; }
 
     }
+
+
 }

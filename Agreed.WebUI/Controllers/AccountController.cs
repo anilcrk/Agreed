@@ -50,7 +50,9 @@ namespace Agreed.WebUI.Controllers
             var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name,user.FirstName + " " + user.LastName),
-                    new Claim(ClaimTypes.Role,string.Join(",", userClaims.Select(uc=>uc.Name)))
+                    new Claim(ClaimTypes.Role,string.Join(",", userClaims.Select(uc=>uc.Name))),
+                    new Claim(type:Core.Enums.ClaimTypes.CompanyId.ToString(), string.Join(",", user.CompanyId)),
+                    new Claim(type:Core.Enums.ClaimTypes.UserId.ToString(), string.Join(",", user.Id))
                 };
 
             var identity = new ClaimsIdentity

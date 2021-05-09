@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using Agreed.Core.Repositories;
 using Agreed.Core.Service;
@@ -14,6 +15,7 @@ using Agreed.WebUI.ModelServices;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -43,8 +45,10 @@ namespace Agreed.WebUI
             services.AddScoped<CompanyModelService, CompanyModelService>();
             services.AddScoped<CommissionModelService, CommissionModelService>();
             services.AddScoped<CargoModelService, CargoModelService>();
+            services.AddScoped<UserModelService, UserModelService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICompanyService, CompanyService>();
+            services.AddHttpContextAccessor();
 
             services.AddDbContext<AppDbContext>(options =>
             {

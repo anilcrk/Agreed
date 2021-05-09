@@ -16,14 +16,16 @@ using Microsoft.AspNetCore.Mvc;
 namespace Agreed.WebUI.Controllers
 {
     [Authorize]
-    [AuthorizeRoles(Role.Administrator)]
+    [AuthorizeRoles(Role.Assistant,Role.Administrator)]
     public class CommissionController : Controller
     {
         private readonly CommissionModelService _modelService;
+        private readonly int _userCompanyId;
 
-        public CommissionController(CommissionModelService modelService)
+        public CommissionController(CommissionModelService modelService, IHttpContextAccessor contextAccessor)
         {
             _modelService = modelService;
+            _userCompanyId = Convert.ToInt32(contextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == Core.Enums.ClaimTypes.CompanyId.ToString()).Value);
         }
         public IActionResult Index()
         {
@@ -49,7 +51,7 @@ namespace Agreed.WebUI.Controllers
 
             try
             {
-                commissions = await CommissionModelHelper.ReadCommision(commissionReportFile, fileName);
+                commissions = await CommissionModelHelper.ReadCommision(commissionReportFile, fileName, _userCompanyId);
             }
             catch (Exception ex)
             {

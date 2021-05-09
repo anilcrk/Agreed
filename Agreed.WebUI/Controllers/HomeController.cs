@@ -14,6 +14,7 @@ namespace Agreed.WebUI.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly string test;
 
         public HomeController(ILogger<HomeController> logger)
         {

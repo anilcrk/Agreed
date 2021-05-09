@@ -326,6 +326,12 @@
                         <a href="/Company"><i class="feather icon-home"></i><span class="menu-title">Şirket</span></a>
                     </li>
                 }
+                @if (User.Claims.Where(uc => uc.Type == System.Security.Claims.ClaimTypes.Role).SingleOrDefault().Value == Agreed.Core.Constants.Role.Administrator)
+                {
+                    <li class="nav-item">
+                        <a href="/User"><i class="feather icon-user"></i><span class="menu-title">Kullanıcılar</span></a>
+                    </li>
+                }
                 @* <li class=" nav-item">
             <a href="#"><i class="feather icon-shopping-cart"></i><span class="menu-title" data-i18n="Ecommerce">Ecommerce</span></a>
             <ul class="menu-content">

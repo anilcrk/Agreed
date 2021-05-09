@@ -6,6 +6,7 @@ namespace Agreed.Core.Entities
 {
     public class Cargo
     {
+        public int CompanyId { get; set; }
         public int Id { get; set; }
 
         /// <summary>
@@ -77,5 +78,7 @@ namespace Agreed.Core.Entities
         /// Butik Id
         /// </summary>
         public string BoutiqueId { get; set; }
+
+        public virtual Company Company { get; set; }
     }
 }

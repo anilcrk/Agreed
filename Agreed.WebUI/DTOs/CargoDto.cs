@@ -7,6 +7,8 @@ namespace Agreed.WebUI.DTOs
 {
     public class CargoDto
     {
+        public int CompanyId { get; set; }
+
         /// <summary>
         /// Satıcı Id
         /// </summary>

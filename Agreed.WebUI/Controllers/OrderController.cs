@@ -22,18 +22,20 @@ using Microsoft.AspNetCore.Authorization;
 namespace Agreed.WebUI.Controllers
 {
     [Authorize]
-    [AuthorizeRoles(Role.Administrator)]
+    [AuthorizeRoles(Role.Assistant, Role.Administrator)]
     public class OrderController : Controller
     {
         private readonly IOrderService _service;
         private readonly IMapper _mapper;
         private readonly OrderModelService _modelService;
+        private readonly int _userCompanyId;
 
-        public OrderController(IOrderService service, IMapper mapper, OrderModelService modelService)
+        public OrderController(IOrderService service, IMapper mapper, OrderModelService modelService, IHttpContextAccessor contextAccessor)
         {
             _service = service;
             _mapper = mapper;
             _modelService = modelService;
+            _userCompanyId = Convert.ToInt32(contextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == Core.Enums.ClaimTypes.CompanyId.ToString()).Value);
         }
         public IActionResult Index()
         {
@@ -47,9 +49,10 @@ namespace Agreed.WebUI.Controllers
         [Obsolete]
         public async Task<IActionResult> Index(IFormFile orderReportFile, [FromServices] IHostingEnvironment hostingEnvironment)
         {
+
             var model = new OrderViewModel();
 
-            if(orderReportFile == null)
+            if (orderReportFile == null)
             {
                 return View(model);
             }
@@ -59,15 +62,15 @@ namespace Agreed.WebUI.Controllers
 
             try
             {
-                orders = await OrderModelHelper.ReadOrder(orderReportFile, fileName);
+                orders = await OrderModelHelper.ReadOrder(orderReportFile, fileName, _userCompanyId);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 model.ResultModel.Success = false;
                 model.ResultModel.Message = ex.Message;
                 return View(model);
             }
-            
+
 
             return View(await _modelService.AddRange(orders));
         }

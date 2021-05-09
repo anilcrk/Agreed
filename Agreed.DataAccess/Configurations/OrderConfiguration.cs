@@ -13,6 +13,12 @@ namespace Agreed.DataAccess.Configurations
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseIdentityColumn();
+
+            builder.HasOne(d => d.Company)
+                .WithMany(p => p.Orders)
+                .HasForeignKey(d => d.CompanyId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Orders_Company");
         }
     }
 }

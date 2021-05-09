@@ -13,7 +13,7 @@ namespace Agreed.WebUI.Helpers.ExcelModelHelper
 {
     public class OrderModelHelper
     {
-        public static Task<List<OrderDto>> ReadOrder(IFormFile file, string fileName)
+        public static Task<List<OrderDto>> ReadOrder(IFormFile file, string fileName, int companyId)
         {
             if (!string.IsNullOrEmpty(fileName))
             {
@@ -40,6 +40,7 @@ namespace Agreed.WebUI.Helpers.ExcelModelHelper
 
                         orders.Add(new OrderDto()
                         {
+                            CompanyId = companyId,
                             Barcode = reader.GetValue(0) != null ? reader.GetValue(0).ToString() : "",
                             PackageNumber = reader.GetValue(1) != null ? reader.GetValue(1).ToString() : "",
                             CargoCompany = reader.GetValue(2) != null ? reader.GetValue(2).ToString() : "",

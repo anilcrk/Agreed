@@ -16,14 +16,16 @@ using Agreed.WebUI.Helpers.ExcelModelHelper;
 namespace Agreed.WebUI.Controllers
 {
     [Authorize]
-    [AuthorizeRoles(Role.Administrator)]
+    [AuthorizeRoles(Role.Assistant, Role.Administrator)]
     public class CargoController : Controller
     {
         private readonly CargoModelService _modelService;
+        private readonly int _userCompanyId;
 
-        public CargoController(CargoModelService modelService)
+        public CargoController(CargoModelService modelService, IHttpContextAccessor contextAccessor)
         {
             _modelService = modelService;
+            _userCompanyId = Convert.ToInt32(contextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == Core.Enums.ClaimTypes.CompanyId.ToString()).Value);
         }
         public IActionResult Index()
         {
@@ -49,7 +51,7 @@ namespace Agreed.WebUI.Controllers
 
             try
             {
-                cargoes = await CargoModelHelper.ReadCargo(cargoReportFile, fileName);
+                cargoes = await CargoModelHelper.ReadCargo(cargoReportFile, fileName, _userCompanyId);
             }
             catch (Exception ex)
             {

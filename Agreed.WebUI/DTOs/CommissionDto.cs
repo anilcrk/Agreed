@@ -7,6 +7,8 @@ namespace Agreed.WebUI.DTOs
 {
     public class CommissionDto
     {
+        public int CompanyId { get; set; }
+
         public int Id { get; set; }
 
         /// <summary>

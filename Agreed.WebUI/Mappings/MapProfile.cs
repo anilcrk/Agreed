@@ -20,6 +20,12 @@ namespace Agreed.WebUI.Mappings
 
             CreateMap<Cargo, CargoDto>();
             CreateMap<CargoDto, Cargo>();
+
+            CreateMap<UserDto, User>();
+            CreateMap<User, UserDto>();
+
+            CreateMap<Company, CompanyDto>();
+            CreateMap<CompanyDto, Company>();
         }
     }
 }

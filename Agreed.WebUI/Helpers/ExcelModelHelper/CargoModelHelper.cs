@@ -11,7 +11,8 @@ namespace Agreed.WebUI.Helpers.ExcelModelHelper
 {
     public class CargoModelHelper
     {
-        public static Task<List<CargoDto>> ReadCargo(IFormFile file, string fileName)
+
+        public static Task<List<CargoDto>> ReadCargo(IFormFile file, string fileName, int companyId)
         {
             if (!string.IsNullOrEmpty(fileName))
             {
@@ -38,6 +39,7 @@ namespace Agreed.WebUI.Helpers.ExcelModelHelper
 
                         var cargo = new CargoDto();
 
+                        cargo.CompanyId = companyId;
                         cargo.SellerID = reader.GetValue(0) != null ? reader.GetValue(0).ToString() : "";
                         cargo.ShipmentFee = Convert.ToDouble(reader.GetValue(1));
                         cargo.Desi = reader.GetValue(2) != null ? reader.GetValue(2).ToString() : "";
