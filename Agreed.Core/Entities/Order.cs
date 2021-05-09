@@ -96,6 +96,26 @@ namespace Agreed.Core.Entities
         /// </summary>
         public string BoutiqueNumber { get; set; }
 
+        /// <summary>
+        /// Cargo Durumu
+        /// </summary>
+        public bool CargoStatus { get; set; }
+
+        /// <summary>
+        /// Komisyon Durumu
+        /// </summary>
+        public bool CommissionStatus { get; set; }
+
+        /// <summary>
+        /// Kargo id
+        /// </summary>
+        public int CargoId { get; set; }
+
+        /// <summary>
+        /// Komisyon id
+        /// </summary>
+        public int CommissionId { get; set; }
+
         public virtual Company Company { get; set; }
     }
 }

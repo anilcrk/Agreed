@@ -27,6 +27,10 @@ namespace Agreed.WebUI.DTOs
         /// </summary>
         [Required]
         public string OrderNumber { get; set; }
+
+        /// <summary>
+        /// Alıcı
+        /// </summary>
         public string Receiver { get; set; }
 
         /// <summary>
@@ -98,5 +102,25 @@ namespace Agreed.WebUI.DTOs
         /// Butik Numarası
         /// </summary>
         public string BoutiqueNumber { get; set; }
+
+        /// <summary>
+        /// Cargo Durumu
+        /// </summary>
+        public bool CargoStatus { get; set; }
+
+        /// <summary>
+        /// Komisyon Durumu
+        /// </summary>
+        public bool CommissionStatus { get; set; }
+
+        /// <summary>
+        /// Kargo id
+        /// </summary>
+        public int CargoId { get; set; }
+
+        /// <summary>
+        /// Komisyon id
+        /// </summary>
+        public int CommissionId { get; set; }
     }
 }

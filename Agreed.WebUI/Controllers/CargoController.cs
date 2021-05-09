@@ -61,7 +61,7 @@ namespace Agreed.WebUI.Controllers
             }
 
 
-            return View(await _modelService.AddRange(cargoes));
+            return View(await _modelService.AddRange(cargoes, _userCompanyId));
         }
     }
 }

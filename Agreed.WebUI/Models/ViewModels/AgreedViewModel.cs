@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Agreed.WebUI.Models.ViewModels
 {
-    public class OrderViewModel
+    public class AgreedViewModel
     {
-        public OrderViewModel()
+        public AgreedViewModel()
         {
             Orders = new List<Order>();
             ResultModel = new ResultModel();
         }
-        public List<Order> Orders{ get; set; }
+        public List<Order> Orders { get; set; }
 
         public ResultModel ResultModel { get; set; }
     }
