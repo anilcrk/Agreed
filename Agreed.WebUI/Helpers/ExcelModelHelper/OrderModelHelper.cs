@@ -1,4 +1,5 @@
-﻿using Agreed.WebUI.DTOs;
+﻿using Agreed.Core.ExtensionMethods;
+using Agreed.WebUI.DTOs;
 using AutoMapper;
 using ExcelDataReader;
 using Microsoft.AspNetCore.Http;
@@ -58,10 +59,10 @@ namespace Agreed.WebUI.Helpers.ExcelModelHelper
                             Brand = reader.GetValue(14) != null ? reader.GetValue(14).ToString() : string.Empty,
                             StockCode = reader.GetValue(15) != null ? reader.GetValue(15).ToString() : string.Empty,
                             Piece = Convert.ToInt32(reader.GetValue(16)),
-                            UnitPrice = Convert.ToDecimal(reader.GetValue(17)),
-                            SalesAmount = Convert.ToDecimal(reader.GetValue(18)),
-                            DiscountAmount = Convert.ToDecimal(reader.GetValue(19)),
-                            AmountTobeBilled = Convert.ToDecimal(reader.GetValue(20)),
+                            UnitPrice = reader.GetValue(17).ExConvertToDecimal(),
+                            SalesAmount = reader.GetValue(18).ExConvertToDecimal(),
+                            DiscountAmount = reader.GetValue(19).ExConvertToDecimal(),
+                            AmountTobeBilled = reader.GetValue(20).ExConvertToDecimal(),
                             BoutiqueNumber = reader.GetValue(21) != null ? reader.GetValue(21).ToString() : string.Empty,
                         });
                     }
