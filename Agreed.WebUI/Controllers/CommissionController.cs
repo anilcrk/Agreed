@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Agreed.WebUI.Controllers
 {
     [Authorize]
-    [AuthorizeRoles(Role.Assistant,Role.Administrator)]
+    [AuthorizeRoles(Role.Assistant, Role.Administrator)]
     public class CommissionController : Controller
     {
         private readonly CommissionModelService _modelService;
@@ -61,7 +61,7 @@ namespace Agreed.WebUI.Controllers
             }
 
 
-            return View(await _modelService.AddRange(commissions));
+            return View(await _modelService.AddRange(commissions, _userCompanyId));
         }
     }
 }

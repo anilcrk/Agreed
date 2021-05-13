@@ -76,14 +76,14 @@ namespace Agreed.WebUI.Helpers.ExcelModelHelper
                         commission.TYProgressPayment = Convert.ToDouble(reader.GetValue(11));
                         commission.SellerProgressPayment = Convert.ToDouble(reader.GetValue(12));
                         commission.TermTime = Convert.ToInt32(reader.GetValue(13));
-                        commission.AgreeDate = reader.GetValue(14) != null ? Convert.ToDateTime(reader.GetValue(14)) : new DateTime();
+                        commission.AgreeDate = !string.IsNullOrEmpty(reader.GetValue(14).ToString()) ? Convert.ToDateTime(reader.GetValue(14)) : new DateTime();
                         commission.Deliverydate = reader.GetValue(15) != null ? Convert.ToDateTime(reader.GetValue(15)) : new DateTime();
                         commission.TermDate = reader.GetValue(16) != null ? Convert.ToDateTime(reader.GetValue(16)) : new DateTime();
                         commission.CommissionInvoiceNumber = reader.GetValue(17) != null ? reader.GetValue(17).ToString() : "";
                         commission.TotalAmount = Convert.ToDouble(reader.GetValue(18));
                         commission.Name = reader.GetValue(19) != null ? reader.GetValue(19).ToString() : "";
                         commission.Surname = reader.GetValue(20) != null ? reader.GetValue(20).ToString() : "";
-                        commission.ShippingDate = reader.GetValue(21) != null ? Convert.ToDateTime(reader.GetValue(21)) : new DateTime();
+                        commission.ShippingDate = !string.IsNullOrEmpty(reader.GetValue(21)?.ToString()) ? Convert.ToDateTime(reader.GetValue(21)) : new DateTime();
 
                         commmisions.Add(commission);
                     }
