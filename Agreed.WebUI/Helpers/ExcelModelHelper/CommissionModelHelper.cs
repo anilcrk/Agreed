@@ -60,14 +60,16 @@ namespace Agreed.WebUI.Helpers.ExcelModelHelper
 
                         //});
 
+
                         var commission = new CommissionDto();
+
                         commission.CompanyId = companyId;
                         commission.TransactionId = reader.GetValue(0) != null ? reader.GetValue(0).ToString() : "";
                         commission.ProcessType = reader.GetValue(1) != null ? reader.GetValue(1).ToString() : "";
                         commission.OrderNumber = reader.GetValue(2) != null ? reader.GetValue(2).ToString() : "";
-                        commission.OrderDate = reader.GetValue(3) != null ? Convert.ToDateTime(reader.GetValue(3)) : new DateTime();
+                        commission.OrderDate = !string.IsNullOrEmpty(reader.GetValue(3)?.ToString()) ? Convert.ToDateTime(reader.GetValue(3)) : new DateTime();
                         commission.OdemeStatus = reader.GetValue(4) != null ? reader.GetValue(4).ToString() : "";
-                        commission.ProcessDate = reader.GetValue(5) != null ? Convert.ToDateTime(reader.GetValue(5)) : new DateTime();
+                        commission.ProcessDate = !string.IsNullOrEmpty(reader.GetValue(5)?.ToString()) ? Convert.ToDateTime(reader.GetValue(5)) : new DateTime();
                         commission.Seller = reader.GetValue(6) != null ? reader.GetValue(6).ToString() : "";
                         commission.VendorCurrentName = reader.GetValue(7) != null ? reader.GetValue(7).ToString() : "";
                         commission.ProductName = reader.GetValue(8) != null ? reader.GetValue(8).ToString() : "";
@@ -77,8 +79,8 @@ namespace Agreed.WebUI.Helpers.ExcelModelHelper
                         commission.SellerProgressPayment = Convert.ToDouble(reader.GetValue(12));
                         commission.TermTime = Convert.ToInt32(reader.GetValue(13));
                         commission.AgreeDate = !string.IsNullOrEmpty(reader.GetValue(14).ToString()) ? Convert.ToDateTime(reader.GetValue(14)) : new DateTime();
-                        commission.Deliverydate = reader.GetValue(15) != null ? Convert.ToDateTime(reader.GetValue(15)) : new DateTime();
-                        commission.TermDate = reader.GetValue(16) != null ? Convert.ToDateTime(reader.GetValue(16)) : new DateTime();
+                        commission.Deliverydate = !string.IsNullOrEmpty(reader.GetValue(15)?.ToString()) ? Convert.ToDateTime(reader.GetValue(15)) : new DateTime();
+                        commission.TermDate = !string.IsNullOrEmpty(reader.GetValue(16)?.ToString()) ? Convert.ToDateTime(reader.GetValue(16)) : new DateTime();
                         commission.CommissionInvoiceNumber = reader.GetValue(17) != null ? reader.GetValue(17).ToString() : "";
                         commission.TotalAmount = Convert.ToDouble(reader.GetValue(18));
                         commission.Name = reader.GetValue(19) != null ? reader.GetValue(19).ToString() : "";
@@ -89,12 +91,12 @@ namespace Agreed.WebUI.Helpers.ExcelModelHelper
                     }
                 }
             }
-        
 
-        // model doldurulduktan sonra file delete
-        System.IO.File.Delete(fileName);
+
+            // model doldurulduktan sonra file delete
+            System.IO.File.Delete(fileName);
 
             return Task.FromResult(commmisions);
         }
-}
+    }
 }
