@@ -67,6 +67,7 @@ namespace Agreed.WebUI
                     options.Cookie.Name = "AgreedCookie";
                 });
             services.AddMvc();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
