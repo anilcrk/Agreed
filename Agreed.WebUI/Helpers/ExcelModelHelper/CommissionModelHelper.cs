@@ -78,7 +78,7 @@ namespace Agreed.WebUI.Helpers.ExcelModelHelper
                         commission.TYProgressPayment = Convert.ToDouble(reader.GetValue(11));
                         commission.SellerProgressPayment = Convert.ToDouble(reader.GetValue(12));
                         commission.TermTime = Convert.ToInt32(reader.GetValue(13));
-                        commission.AgreeDate = !string.IsNullOrEmpty(reader.GetValue(14).ToString()) ? Convert.ToDateTime(reader.GetValue(14)) : new DateTime();
+                        commission.AgreeDate = !string.IsNullOrEmpty(reader.GetValue(14)?.ToString()) ? Convert.ToDateTime(reader.GetValue(14)) : new DateTime();
                         commission.Deliverydate = !string.IsNullOrEmpty(reader.GetValue(15)?.ToString()) ? Convert.ToDateTime(reader.GetValue(15)) : new DateTime();
                         commission.TermDate = !string.IsNullOrEmpty(reader.GetValue(16)?.ToString()) ? Convert.ToDateTime(reader.GetValue(16)) : new DateTime();
                         commission.CommissionInvoiceNumber = reader.GetValue(17) != null ? reader.GetValue(17).ToString() : "";

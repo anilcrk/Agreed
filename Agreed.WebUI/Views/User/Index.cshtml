@@ -3,168 +3,189 @@
     ViewData["Title"] = "Kullanıcılar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<div class="col-md-6 col-lg-6 col-12">
-    <div class="card" style="height: 419.75px;">
-        <div class="card-header">
-            <h4 class="card-title">Kullanıcı Tanımlama</h4>
-        </div>
-        <div class="card-content">
-            <div class="card-body">
-                <form asp-controller="User" asp-action="Index" method="post">
-                    <div class="form-body">
-                        <div class="row">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary mr-1 mb-1 waves-effect waves-light">Kaydet</button>
-                                <button type="reset" class="btn btn-outline-warning mr-1 mb-1 waves-effect waves-light">Reset</button>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group row">
-                                    <div class="col-md-4">
-                                        <span>Email</span>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="position-relative has-icon-left">
-                                            <input asp-for="User.Email" type="text" id="fname-icon" class="form-control" placeholder="Email">
-                                            <div class="form-control-position">
-                                                <i class="feather icon-mail"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group row">
-                                    <div class="col-md-4">
-                                        <span>Parola</span>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="position-relative has-icon-left">
-                                            <input asp-for="User.Password" type="password" id="fname-icon" class="form-control" placeholder="Parola">
-                                            <div class="form-control-position">
-                                                <i class="feather icon-user"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group row">
-                                    <div class="col-md-4">
-                                        <span>Ad</span>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="position-relative has-icon-left">
-                                            <input asp-for="User.FirstName" type="text" id="fname-icon" class="form-control" placeholder="Ad">
-                                            <div class="form-control-position">
-                                                <i class="feather icon-user"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group row">
-                                    <div class="col-md-4">
-                                        <span>Soyad</span>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="position-relative has-icon-left">
-                                            <input asp-for="User.LastName" type="text" id="fname-icon" class="form-control" placeholder="Soyad">
-                                            <div class="form-control-position">
-                                                <i class="feather icon-user"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group row">
-                                    <div class="col-md-4">
-                                        <span>Şirket</span>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="position-relative has-icon-left">
-                                            <select asp-for="User.CompanyId" asp-items="Model.Companies" class="form-control select2">
-                                                <option value="">-- Şirket Seçiniz --</option>
-                                            </select>
-                                            <div class="form-control-position">
-                                                <i class="feather icon-user"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group row">
-                                    <div class="col-md-4">
-                                        <span>Kullanıcı Rolü</span>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="position-relative has-icon-left">
-                                            <select asp-for="User.RoleId" asp-items="Model.UserRoles" class="form-control select2">
-                                                <option value="">-- Kullanıcı rolü seçiniz (Yetki için) --</option>
-                                            </select>
-                                            <div class="form-control-position">
-                                                <i class="feather icon-user"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group row">
-                                    <div class="vs-checkbox-con vs-checkbox-primary">
-                                        <input type="checkbox" asp-for="User.Status" checked="">
-                                        <span class="vs-checkbox">
-                                            <span class="vs-checkbox--check">
-                                                <i class="vs-icon feather icon-check"></i>
-                                            </span>
-                                        </span>
-                                        <span class="">Aktif/Pasif</span>
-                                    </div>
-                                </div>
-                            </div>
-
-
+<section id="basic-vertical-layouts">
+    <div class="row match-height">
+        <div class="col-md-6 col-12">
+            <div class="card" style="">
+                <div class="card-header">
+                    <h4 class="card-title">Kullanıcı Tanımlama</h4>
+                </div>
+                @*<div class="col-12">
+                        <div class="form-group">
+                            <label for="first-name-vertical">Firma Adı</label>
+                            <input name="companyName" type="text" class="form-control" placeholder="Firma Adı">
                         </div>
+                    </div>*@
+                <div class="card-content">
+                    <div class="card-body">
+                        <form asp-controller="User" asp-action="Index" method="post">
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <span>Email</span>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="position-relative has-icon-left">
+                                                    <input asp-for="User.Email" type="text" id="fname-icon" class="form-control" placeholder="Email">
+                                                    <div class="form-control-position">
+                                                        <i class="feather icon-mail"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <span>Parola</span>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="position-relative has-icon-left">
+                                                    <input asp-for="User.Password" type="password" id="fname-icon" class="form-control" placeholder="Parola">
+                                                    <div class="form-control-position">
+                                                        <i class="feather icon-user"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <span>Ad</span>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="position-relative has-icon-left">
+                                                    <input asp-for="User.FirstName" type="text" id="fname-icon" class="form-control" placeholder="Ad">
+                                                    <div class="form-control-position">
+                                                        <i class="feather icon-user"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <span>Soyad</span>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="position-relative has-icon-left">
+                                                    <input asp-for="User.LastName" type="text" id="fname-icon" class="form-control" placeholder="Soyad">
+                                                    <div class="form-control-position">
+                                                        <i class="feather icon-user"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <span>Şirket</span>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="position-relative has-icon-left">
+                                                    <select asp-for="User.CompanyId" asp-items="Model.Companies" class="form-control select2">
+                                                        <option value="">-- Şirket Seçiniz --</option>
+                                                    </select>
+                                                    <div class="form-control-position">
+                                                        <i class="feather icon-user"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <span>Kullanıcı Rolü</span>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="position-relative has-icon-left">
+                                                    <select asp-for="User.RoleId" asp-items="Model.UserRoles" class="form-control select2">
+                                                        <option value="">-- Kullanıcı rolü seçiniz (Yetki için) --</option>
+                                                    </select>
+                                                    <div class="form-control-position">
+                                                        <i class="feather icon-user"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-12 d-flex justify-content-end">
+                                        <div class="form-group row">
+                                            <div class="vs-checkbox-con vs-checkbox-primary ">
+                                                <input type="checkbox" asp-for="User.Status" checked="">
+                                                <span class="vs-checkbox">
+                                                    <span class="vs-checkbox--check">
+                                                        <i class="vs-icon feather icon-check"></i>
+                                                    </span>
+                                                </span>
+                                                <span>Aktif/Pasif</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-primary mr-1 mb-1 waves-effect waves-light btn-block ">Kaydet</button>
+                                        <button type="reset" class="btn btn-outline-warning mr-1 mb-1 waves-effect waves-light btn-block">Sıfırla</button>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-<div class="col-md-6 col-lg-6 col-12">
-    <div class="card">
-        <div class="card-header">
-            <h4 class="card-title">Kullanıcılar</h4>
-        </div>
-        <div class="card-content">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>Email</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if (Model.Users.Count > 0)
-                            {
-                                foreach (var item in Model.Users)
-                                {
-                                    <tr>
-                                        <td>@item.Email</td>
-                                    </tr>
-                                }
-                            }
-                        </tbody>
-                    </table>
+        <div class="col-md-6 col-12">
+            <div class="card" style="">
+                <div class="card-header">
+                    <h4 class="card-title">Kayıtlı Firmalar</h4>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <form class="form form-vertical">
+                            <div class="form-body">
+                                <div class="row">
+                                    <table class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Email</th>
+                                                <th>Firma</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (Model.Users.Count > 0)
+                                            {
+                                                foreach (var item in Model.Users)
+                                                {
+                                            <tr>
+                                                <td>@item.Email</td>
+                                                <td>@item.CompanyId</td>
+
+                                            </tr>
+                                                }
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
+
+
 
 @if (Model.ResultModel != null)
 {

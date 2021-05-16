@@ -51,12 +51,11 @@ namespace Agreed.WebUI.Controllers
             var sortColumn = Request.Form[string.Concat("columns[", Request.Form["order[0][column]"], "][name]")];
             var sortColumnDirection = Request.Form["order[0][dir]"];
 
-            //var orders = await _modelService.GetAgrrededOrders(_userCompanyId);
 
-            IQueryable<Order> ordersFilter = _orderDbSet.Where(m => string.IsNullOrEmpty(searchValue)
+            IQueryable<Order> ordersFilter = _orderDbSet.Where(m => string.IsNullOrEmpty(searchValue) && m.CompanyId == _userCompanyId
                 ? true
-                : (m.Barcode.Contains(searchValue) 
-                || m.ProductName.Contains(searchValue) 
+                : (m.OrderNumber.Contains(searchValue) 
+                || m.Receiver.Contains(searchValue) 
                 || m.PackageNumber.Contains(searchValue) 
                 || m.Email.Contains(searchValue)) && m.CompanyId == _userCompanyId).ToList().AsQueryable();
 

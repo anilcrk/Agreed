@@ -5,24 +5,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="card">
-    <div class="card-header">
-        <label class="card-title">Kargo Raporu</label>
-    </div>
+<div class="card">  
     <div class="card-content">
         <div class="card-body">
             <form asp-controller="Cargo" asp-action="Index" method="post" enctype="multipart/form-data">
-                <div class="row">
-                    <div class="col-lg-6 col-md-12">
-                        <fieldset class="form-group">
-                            <label for="basicInputFile">excel</label>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="cargoReportFile" name="cargoReportFile">
-                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                            </div>
-                        </fieldset>
-                    </div>
-                    <button class="btn btn-success btn-block p-1" type="submit" title="Yükle"><i class="fas fa-file-excel-o fa-2x"></i></button>
+                <div class="col-md-12">
+                    <fieldset class="form-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input py-5" id="cargoReportFile" name="cargoReportFile">
+                            <label class="custom-file-label text-center py-5 h5" for="inputGroupFile01">Excel dosyası eklemek için tıklayınız...</label>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-md-12 pt-5">
+                    <button class="btn btn-success btn-block p-1" type="submit" title="Karşılaştır"><i class="fas fa-file-excel-o fa-2x"></i></button>
                 </div>
             </form>
         </div>
